@@ -105,14 +105,14 @@ If the above XML source is transformed into HTML, see the next section, you shou
     An example command for [Saxon 6.5.5](http://saxon.sourceforge.net/saxon6.5.5/ "Saxon 6.5.5") XSLT processor on Windows operating system:
    
     ```Batchfile
-java -cp C:\DocBook\tools\saxon.jar ^
-com.icl.saxon.StyleSheet ^
-main-resolved.xml ^
-C:\xslt\chunktoc.xsl ^
-base.dir=C:/example/output/ ^
-chunk.toc=file:///C:/example/toc.xml ^
-manual.toc=file:///C:/example/toc.xml
-```
+    java -cp C:\DocBook\tools\saxon.jar ^
+    com.icl.saxon.StyleSheet ^
+    main-resolved.xml ^
+    C:\xslt\chunktoc.xsl ^
+    base.dir=C:/example/output/ ^
+    chunk.toc=file:///C:/example/toc.xml ^
+    manual.toc=file:///C:/example/toc.xml
+    ```
 
 ## How to build
 
