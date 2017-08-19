@@ -37,7 +37,7 @@ public class XIncludeBasedChunkingHelper {
     private static final String PARAM_KEY = "-key";
     private static final String PARAM_IGNORE_KEY = "-ignorekey";
 
-    private static final String PARAM_KEY_DEFAULT_VALUE = "chunk-by-xincludes";
+    private static final String PARAM_KEY_DEFAULT_VALUE = "xinclude-based-chunking";
     private static final String PARAM_IGNORE_KEY_DEFAULT_VALUE = "do-not-chunk-this-xinclude";
 
     public static void main(String[] args) throws IOException {
