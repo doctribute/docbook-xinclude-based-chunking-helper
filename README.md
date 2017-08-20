@@ -94,7 +94,7 @@ If the above XML source is transformed into HTML, see the next section, you shou
 
  3. Resolving XIncludes
      
-     While it can be integrated into XSLT transformation step, because of nasty Xerces bug I prefer resolving XIncludes in a separate step, using a different tool:
+     While it can be integrated into XSLT transformation step, because of nasty [Xerces bug](https://issues.apache.org/jira/browse/XERCESJ-1102) I prefer resolving XIncludes in a separate step, using a different tool:
      1. download `xmllint` tool for your operating system at http://xmlsoft.org/downloads.html
      2. run `xmllint --xinclude -o main-resolved.xml main.xml`
 
@@ -107,7 +107,7 @@ If the above XML source is transformed into HTML, see the next section, you shou
     
     For both `chunk.toc` and `manual.toc` the generated `toc.xml` file needs to be specified.
     
-    An example command for [Saxon 6.5.5](http://saxon.sourceforge.net/saxon6.5.5/ "Saxon 6.5.5") XSLT processor on Windows operating system:
+    An example command for [Saxon 6.5.5](http://saxon.sourceforge.net/saxon6.5.5/) XSLT processor on Windows operating system:
    
     ```Batchfile
     java -cp C:\DocBook\tools\saxon.jar ^
