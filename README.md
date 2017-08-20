@@ -23,7 +23,8 @@ All rules are demostrated in the example below.
 ```xml
 <book xmlns="http://docbook.org/ns/docbook"
       xmlns:xi="http://www.w3.org/2001/XInclude"
-      version="5.0">
+      version="5.0"
+      xml:id="main">
     <?dbhtml xinclude-based-chunking?> (2)
     <xi:include href="info.xml"> (1b)
         <?dbhtml do-not-chunk-this-xinclude?> (3)
@@ -84,7 +85,7 @@ If the above XML source is transformed into HTML, see the next section, you shou
 ### Generating HTML output
  1. Creating a clone of original source XML files
  
-    As the main XML file is modified in the next step, it is recommended to perform all the procedure on a cloned source XML files.
+    As the main XML file is modified in the next step, it is recommended to perform all the procedure on cloned source XML files.
  
  2. Creating configuration file for chunking
       1. download or build the tool from sources 
