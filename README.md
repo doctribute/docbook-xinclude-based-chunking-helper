@@ -82,20 +82,23 @@ If the above XML source is transformed into HTML, see the next section, you shou
  - rules.html
 
 ### Generating HTML output
-
- 1. Creating configuration file for chunking
+ 1. Creating a clone of original source XML files
+ 
+    As the main XML file is modified in the next step, it is recommended to perform all the procedure on a cloned source XML files.
+ 
+ 2. Creating configuration file for chunking
       1. download or build the tool from sources 
       2. run `java -jar docbook-xinclude-based-chunking-helper-{version}.jar -xml:main.xml`
      
      This will create `toc.xml` file which is later used for custom chunking. If there are parent nodes with all children included via XIncludes, the local table of contents will be generated to avoid cases when the particular file contains just the title without any additional content.
 
- 2. Resolving XIncludes
+ 3. Resolving XIncludes
      
      While it can be integrated into XSLT transformation step, because of nasty Xerces bug I prefer resolving XIncludes in a separate step, using a different tool:
      1. download `xmllint` tool for your operating system at http://xmlsoft.org/downloads.html
      2. run `xmllint --xinclude -o main-resolved.xml main.xml`
 
- 3. Performing the XSLT transformation
+ 4. Performing the XSLT transformation
     
     Besides the source XML file and XSLT template (actually, a slightly customized built-in DocBook template for manual chunking) we have to pass three additional parameters to XSLT processor:
     - `base.dir` - output folder path
