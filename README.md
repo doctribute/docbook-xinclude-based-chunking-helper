@@ -17,7 +17,7 @@ While the latter method allows to completely control the splitting process, it i
 Once document is split naturally, why not reuse this division also for chunking? Good news. It is not a problem any more when keeping several simple rules and employing this handy tool!
 
 ### Rules
-All rules are demostrated in the example below. 
+All rules are demostrated in the example below. These files are also available in a [separate repository](https://github.com/doctribute/docbook-xinclude-based-chunking-stylesheets/tree/master/example/xml).
 
 `main.xml`
 ```xml
@@ -76,11 +76,11 @@ All rules are demostrated in the example below.
 
 If the above XML source is transformed into HTML, see the next section, you should see 5 separate files in the output folder:
 
- - index.html
- - natural-content-splitting.html
- - current-chunking-methods.html
- - xinclude-based-chunking.html
- - rules.html
+ - [index.html](https://htmlpreview.github.io/?https://raw.githubusercontent.com/doctribute/docbook-xinclude-based-chunking-stylesheets/master/example/html/index.html)
+ - [natural-content-splitting.html](https://htmlpreview.github.io/?https://raw.githubusercontent.com/doctribute/docbook-xinclude-based-chunking-stylesheets/master/example/html/natural-content-splitting.html)
+ - [current-chunking-methods.html](https://htmlpreview.github.io/?https://raw.githubusercontent.com/doctribute/docbook-xinclude-based-chunking-stylesheets/master/example/html/current-chunking-methods.html)
+ - [xinclude-based-chunking.html](https://htmlpreview.github.io/?https://raw.githubusercontent.com/doctribute/docbook-xinclude-based-chunking-stylesheets/master/example/html/xinclude-based-chunking.html)
+ - [rules.html](https://htmlpreview.github.io/?https://raw.githubusercontent.com/doctribute/docbook-xinclude-based-chunking-stylesheets/master/example/html/rules.html)
 
 ### Generating HTML output
  1. Creating a clone of original source XML files
