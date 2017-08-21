@@ -87,11 +87,13 @@ If the above XML source is transformed into HTML, see the next section, you shou
  
     As the main XML file is modified in the next step, it is recommended to perform all the procedure on cloned source XML files.
  
- 2. Creating configuration file for chunking
-      1. download or build the tool from sources 
+ 2. Creating a configuration file for chunking
+      1. download or [build](#how-to-build) the tool from sources 
       2. run `java -jar docbook-xinclude-based-chunking-helper-{version}.jar -xml:main.xml`
-     
-     This will create `toc.xml` file which is later used for custom chunking. If there are parent nodes with all children included via XIncludes, the local table of contents will be generated to avoid cases when the particular file contains just the title without any additional content.
+
+    This actually:
+     - creates `toc.xml` file which is later used for custom chunking
+     - inserts `<?toc?>` processing instructions into specific locations within the source XML file; these are replaced, if processed by a [customized XSL stylesheets](https://github.com/doctribute/docbook-xinclude-based-chunking-stylesheets), with the local Table of Contents
 
  3. Resolving XIncludes
      
@@ -101,12 +103,14 @@ If the above XML source is transformed into HTML, see the next section, you shou
 
  4. Performing the XSLT transformation
     
-    Besides the source XML file and XSLT template (actually, a slightly customized built-in DocBook template for manual chunking) we have to pass three additional parameters to XSLT processor:
+    Besides the source XML file and XSLT template for manual chunking ([chunktoc.xsl](http://docbook.sourceforge.net/release/xsl/current/html/chunktoc.xsl)) we have to pass three additional parameters to XSLT processor:
     - `base.dir` - output folder path
     - `chunk.toc` - explicit Table of Contents (to be used for chunking)
     - `manual.toc` - explicit Table of Contents
     
     For both `chunk.toc` and `manual.toc` the generated `toc.xml` file needs to be specified.
+    
+     If there are parent nodes with all children included via XIncludes, the parent chunk would contain just the title without any additional content. To fill this space by the local Table of Contents just apply [customized XSL stylesheets](https://github.com/doctribute/docbook-xinclude-based-chunking-stylesheets).
     
     An example command for [Saxon 6.5.5](http://saxon.sourceforge.net/saxon6.5.5/) XSLT processor on Windows operating system:
    
