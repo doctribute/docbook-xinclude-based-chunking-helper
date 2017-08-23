@@ -53,42 +53,42 @@ public class XIncludeBasedChunkingHelper {
 
         if (!passedValuesMap.isEmpty() && passedValuesMap.containsKey(PARAM_XML)) {
 
-            Path sourcePath = Paths.get(passedValuesMap.get(PARAM_XML));
+            Path xmlPath = Paths.get(passedValuesMap.get(PARAM_XML));
 
-            if (!Files.exists(sourcePath)) {
-                throw new IOException("The specified path was not found: " + sourcePath.toString());
+            if (!Files.exists(xmlPath)) {
+                throw new IOException("The specified path was not found: " + xmlPath.toString());
             }
 
-            sourcePath = sourcePath.toAbsolutePath();
+            xmlPath = xmlPath.toAbsolutePath();
 
             Map<String, String> defaultValuesMap = new HashMap<>();
-            defaultValuesMap.put(PARAM_TOC, sourcePath.getParent().resolve("toc.xml").toString());
+            defaultValuesMap.put(PARAM_TOC, xmlPath.getParent().resolve("toc.xml").toString());
             defaultValuesMap.put(PARAM_KEY, PARAM_KEY_DEFAULT_VALUE);
             defaultValuesMap.put(PARAM_IGNORE_KEY, PARAM_IGNORE_KEY_DEFAULT_VALUE);
 
-            Path manualTocPath = Paths.get(getValue(PARAM_TOC, passedValuesMap, defaultValuesMap));
+            Path tocPath = Paths.get(getValue(PARAM_TOC, passedValuesMap, defaultValuesMap));
             String key = getValue(PARAM_KEY, passedValuesMap, defaultValuesMap);
             String ignoreKey = getValue(PARAM_IGNORE_KEY, passedValuesMap, defaultValuesMap);
 
-            String xml = new String(Files.readAllBytes(sourcePath), StandardCharsets.UTF_8);
+            String xml = new String(Files.readAllBytes(xmlPath), StandardCharsets.UTF_8);
 
             if (xml.contains(key)) {
 
                 XmlFileRootIdHarvester xmlFileRootIdHarvester = new XmlFileRootIdHarvester();
-                Files.walkFileTree(sourcePath.getParent(), xmlFileRootIdHarvester);
+                Files.walkFileTree(xmlPath.getParent(), xmlFileRootIdHarvester);
                 Map<String, String> idFileNameMap = xmlFileRootIdHarvester.getIdFileNameMap();
 
                 try (
-                        InputStream inputStream = Cloaker.getCloakedInputStream(sourcePath);
-                        OutputStream outputStream = Files.newOutputStream(manualTocPath)) {
+                        InputStream inputStream = Cloaker.getCloakedInputStream(xmlPath);
+                        OutputStream outputStream = Files.newOutputStream(tocPath)) {
 
                     ChunkConfigBuilder.run(inputStream, outputStream, idFileNameMap, ignoreKey);
                 }
 
                 try (
-                        InputStream cloakedInputStream = Cloaker.getCloakedInputStream(sourcePath);
+                        InputStream cloakedInputStream = Cloaker.getCloakedInputStream(xmlPath);
                         ByteArrayOutputStream cloakedOutputStream = new ByteArrayOutputStream();
-                        OutputStream outputStream = Files.newOutputStream(sourcePath)) {
+                        OutputStream outputStream = Files.newOutputStream(xmlPath)) {
 
                     MainFileLocalTocAppender.run(cloakedInputStream, cloakedOutputStream);
 
@@ -100,7 +100,7 @@ public class XIncludeBasedChunkingHelper {
 
         } else {
             System.out.println("Usage:");
-            System.out.println("java -jar tocprocessor.jar ");
+            System.out.println("java -jar docbook-xinclude-based-chunking-helper-{version}.jar ");
             System.out.println("     -xml:source.xml");
             System.out.println("    [-toc:toc.xml]");
             System.out.println("    [-key:" + PARAM_KEY_DEFAULT_VALUE + "]");
