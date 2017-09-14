@@ -131,9 +131,15 @@ If the above XML source is transformed into HTML, see the next section, you shou
  - Open this Maven based project in your favorite IDE.
  - Build the project.
 
-The final jar file is located in the `target` subfolder.
+The final jar file is located in the `target` subfolder. 
 
 ## How to use
 
 For usage just run the tool in console without any parameters:
-`java -jar docbook-xinclude-based-chunking-helper-{version}.jar`
+`java -jar docbook-xinclude-based-chunking-helper-{version}-jar-with-dependencies.jar`
+
+## Download
+
+If you prefer downloading the tool directly, just use the following link:
+
+- [docbook-xinclude-based-chunking-helper-0.1.0-jar-with-dependencies.jar](http://www.doctribute.com/blog/resources/004/docbook-xinclude-based-chunking-helper-0.1.0-jar-with-dependencies.jar)
